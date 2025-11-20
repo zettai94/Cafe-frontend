@@ -2,10 +2,9 @@ package com.silvia.service;
 
 import com.silvia.entity.Product;
 import com.silvia.repository.ProductRepo;
-import com.silvia.service.interfaces.ProductInterface;
+import com.silvia.service.interfaces.ProductServiceInterface;
 import com.silvia.exceptions.ProductIDNotFoundException;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -61,16 +60,18 @@ public class ProductService implements ProductInterface{
     @Override
     public Product updateProduct(Long id, Product product)
     {
-        Product exisitng = productRepo.findByProductId(id).orElseThrow(()-> new ProductIDNotFoundException(id));
-        exisitng.setCategory(product.getCategory());
-        exisitng.setProductName(product.getProductName());
-        exisitng.setProductPrice(product.getProductPrice());
-        return productRepo.save(exisitng);
+        Product existing = productRepo.findByProductId(id).orElseThrow(()-> new ProductIDNotFoundException(id));
+        existing.setCategory(product.getCategory());
+        existing.setProductName(product.getProductName());
+        existing.setProductPrice(product.getProductPrice());
+        return productRepo.save(existing);
     }
 
     @Override
     public void deleteProduct(Long id)
     {
+        Product existing = productRepo.findByProductId(id)
+                            .orElseThrow(() -> new ProductIDNotFoundException(id));
         productRepo.deleteById(id);
     }
 
