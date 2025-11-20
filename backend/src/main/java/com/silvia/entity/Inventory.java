@@ -10,22 +10,22 @@ import lombok.Setter;
 @Getter @Setter
 public class Inventory {
 
-    //create invenID that takes itemID as PK
+    //create invenID that takes productID as PK
     @Id
     @Column(name = "invenID")
     private Long invenID;
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "itenID")
-    @Column(name = "item")
-    private Item item;
+    @JoinColumn(name = "productID")
+    @Column(name = "product")
+    private Product product;
 
     @Column(name = "current_qty")
     @PositiveOrZero(message = "Inventory stock cannot be negative")
     private int inStock;
     
-    public void setMenuItem(Item item) 
+    public void setProduct(Product product) 
     {
         //to be implemented
     }

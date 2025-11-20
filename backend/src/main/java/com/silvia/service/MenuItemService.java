@@ -1,68 +1,69 @@
 package com.silvia.service;
 
-import com.silvia.entity.Item;
-import com.silvia.repository.ItemRepo;
-import com.silvia.service.interfaces.ItemInterface;
+import com.silvia.entity.Product;
+import com.silvia.repository.ProductRepo;
+import com.silvia.service.interfaces.ProductInterface;
+import com.silvia.exceptions.ProductIDNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
-public class MenuItemService implements ItemInterface{
+public class ProductService implements ProductInterface{
 
-    private final ItemRepo itemRepo;
+    private final ProductRepo productRepo;
 
     @Autowired
-    public ItemService(ItemRepo itemRepo) {
-        this.itemRepo = itemRepo;
+    public ProductService(ProductRepo productRepo) {
+        this.productRepo = productRepo;
     }
 
-    public Optional<Item> getItemById(Long id)
+    public Optional<Product> getProductById(Long id)
     {
-        return itemRepo.findByItemID(id);
+        return productRepo.findByProductID(id);
     }
 
-    public List<Item> getItemsByCategory(String category)
+    public List<Product> getProductsByCategory(String category)
     {
-        return itemRepo.findAllByCategory(category);
+        return productRepo.findAllByCategory(category);
     }
 
     //search bar usage
-    public List<Item> getItemsByName(String name)
+    public List<Product> getProductsByName(String name)
     {
-        return itemRepo.findByItemNameContainingIgnoreCase(name);
+        return productRepo.findByProductNameContainingIgnoreCase(name);
     }
 
-    public List<Item> getAllItems()
+    public List<Product> getAllProducts()
     {
-        return itemRepo.findAll();
+        return productRepo.findAll();
     }
 
-    public Optional<Item> addOrReturnItem(Item newItem)
+    public Optional<Product> addOrReturnProduct(Product newProduct)
     {
-        Optional<Item> existingItem = itemRepo.findByItemName(newItem.getItemName());
-        if(existingItem.isPresent())
+        Optional<Product> existing = productRepo.findByProductName(newProduct.getProductName());
+        if(existing.isPresent())
         {
-            return existingItem;
+            return existing;
             //to be handled in Controller 
         }
-        Item savedItem = itemRepo.save(newItem);
-        return Optional.of(savedItem);
+        Product saved = productRepo.save(newProduct);
+        return Optional.of(saved);
     }
 
-    public Item updateItem(Long id, Item item)
+    public Product updateProduct(Long id, Product product)
     {
-        Item exisitng = itemRepo.findById(id).orElseThrow(()-> new ItemIDNotFoundException(id));
-        exisitng.setCategory(item.getCategory());
-        exisitng.setItemName(item.getItemName());
-        exisitng.setItemPrice(item.getItemPrice());
-        return itemRepo.save(exisitng);
+        Product exisitng = productRepo.findById(id).orElseThrow(()-> new ProductIDNotFoundException(id));
+        exisitng.setCategory(product.getCategory());
+        exisitng.setProductName(product.getProductName());
+        exisitng.setProductPrice(product.getProductPrice());
+        return productRepo.save(exisitng);
     }
 
-    public void deleteItem(Long id)
+    public void deleteProduct(Long id)
     {
-        itemRepo.deleteById(id);
+        productRepo.deleteById(id);
     }
 
 }
