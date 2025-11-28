@@ -31,6 +31,12 @@ public class Product {
     @Positive(message = "Product price must be greater than 0")
     private Double productPrice;
 
+    @Column(name = "product_imageURL")
+    private String productImageURL;
+
+    @Column(name = "description", length = 200)
+    private String description;
+    
     //this is used to autolink tracked inventory products
     //one to one relationship; auto cascade when product is deleted
     //lazy fetch to avoid loading inventory data unless needed (beverage not tracked)
