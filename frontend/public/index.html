@@ -24,20 +24,38 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>IndieBitesCafe</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <div id="root">
+        <header>
+          <div class="header-container">
+            <div class="welcome-container"></div>
+          </div>
+        </header>
+        <nav>
+          <a href="#">home</a>
+          <a href="#menu">menu</a>
+          <a href="#cart">my cart</a>
+          <a href="#contact">contact us</a>
+        </nav>
+        <section id="feature">Feature</section>
+        <section id="menu">Menu</section>
+        <section id="ordering">how to order<p>see cart</p></section>
+        <section id="contact">
+          <h2>Contact Us</h2>
+          <div class="contact-container">
+            <div class="contact-options">insert linkedin/email</div>
+            <form>
+              <input type="text" name="name" placeholder="You Full Name" required>
+              <input type="email" name="email" placeholder="You Email" required>
+              <textarea type="message" name="message" rows="7" placeholder="Your message" required></textarea>
+              <button type="submit" class="btn btn-primary">Send message</button>
+            </form>
+          </div>
+        </section>
+        <footer></footer>
+      </div>
   </body>
 </html>
