@@ -1,13 +1,13 @@
-package com.silvia.portfoliowebsite;
+package com.silvia.cafeManager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PortfolioWebsiteApplication {
+public class CafeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PortfolioWebsiteApplication.class, args);
+		SpringApplication.run(CafeApplication.class, args);
 	}
 
 }
