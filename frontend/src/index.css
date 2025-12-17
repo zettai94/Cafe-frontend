@@ -73,7 +73,7 @@ body {
 }
 
 .features {
-  padding: 70px 0;
+  padding: 50px 0;
   text-align: center;
 }
 
@@ -91,6 +91,11 @@ body {
   position: relative;
 }
 
+.menu {
+  padding: 50px 0;
+  text-align: center;
+}
+
 .menu-title-grid {
   display: flex;
   justify-content: space-between;
@@ -105,9 +110,6 @@ body {
 }
 
 .menu-grid-content{
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
   width: 100%;
   overflow: hidden;
 }

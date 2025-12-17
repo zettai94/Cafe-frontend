@@ -13,8 +13,8 @@ function App() {
       <Navbar />
       <Hero />
       <FeatureCard />
-      <Gallery />
       <MenuCard />
+      <Gallery />
       <Contact />
       <Footer />
     </>
