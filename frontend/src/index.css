@@ -91,6 +91,19 @@ body {
   position: relative;
 }
 
+.menu-title-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.menu-slider-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .menu-grid-content{
   display: flex;
   justify-content: space-between;

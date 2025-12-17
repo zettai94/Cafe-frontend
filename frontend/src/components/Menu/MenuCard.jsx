@@ -32,17 +32,24 @@ export default function MenuCard() {
          return (
         <section className='menu-card container'>
             <div className="menu-grid"> 
-                <div className="title-menu text-left">
-                    <h2 id="menu-highlight">Menu Highlights</h2>
+                <div className="menu-title-grid">
+                    <div id="menu-title"><h2 >Menu Highlights</h2></div>
+                    {/* Navigation next/prev */}
+                    <div className="menu-slider-wrapper">
+                        <div className="slider-controls">
+                            <button onClick={handlePrev} disabled={isPreviousDisabled}>
+                                Prev
+                            </button>
+                        </div>
+                        <div className="slider-controls">
+                            <button onClick={handleNext} disabled={isNextDisabled}>
+                                Next
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="menu-slider-wrapper">
-                    {/* Navigation next/prev */}
-                    <div className="slider-controls">
-                        <button onClick={handlePrev} disabled={isPreviousDisabled}>
-                            Prev
-                        </button>
-                    </div>
+                
 
                     {/* Menu items grid*/}
                     <div className="menu-grid-content">
@@ -60,12 +67,8 @@ export default function MenuCard() {
                         ))}
                     </div>
 
-                    <div className="slider-controls">
-                        <button onClick={handleNext} disabled={isNextDisabled}>
-                            Next
-                        </button>
-                    </div>
-                </div>
+                    
+                
             </div>
         </section>
     );
