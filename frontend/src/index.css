@@ -6,7 +6,7 @@
 
 :root {
   --background-light: #f8f1c6;
-  --text-dark: #333333;
+  --text-dark: #4b4b4b;
   --text-light: #ffffff;
   --primary-color: #32492f;
   --header-color: #4f684c;
@@ -20,7 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--background-light) !important;
-  color: var(--text-dark);
+  color: var(--text-dark) !important;
 }
 
 /* Scrollbar styling */
@@ -37,6 +37,12 @@ body {
 .navbar {
   background: var(--header-color);
   color: var(--text-light);
+}
+
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  
 }
 
 .navbar a {
@@ -69,7 +75,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
-  border-radius: 12px;
+  border-radius: 15px;
 }
 
 .features {
@@ -101,6 +107,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
+  border-bottom: #9cd196 double;
 }
 
 .menu-slider-wrapper {
@@ -124,7 +131,7 @@ body {
 .menu-image-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 1/1;
   overflow: hidden;
   border-radius: 15px;
 }
@@ -139,19 +146,12 @@ body {
 .menu-image-text {
   position: absolute;
   bottom: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  color: var(--text-light);
-  padding: 10px;
-  text-align: left;
-}
-
-.menu-image-text {
-  position: absolute;
-  bottom: 0;
   left: 0;
   width: 100%;
-  padding: 15px;
+  height: 110px;
+  display:flex;
+  flex-direction: column;
+  padding: 20px 15px;
   background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
   color: white;
   text-align: left;
@@ -160,4 +160,3 @@ body {
 .menu-image-text h3, .menu-image-text p {
   margin: 0;
 }
-
