@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { menu } from "./Menu";
+import { menu, coffee, non_coffee, baked } from "./Menu";
 
 export default function MenuCard() { 
    
@@ -31,28 +31,30 @@ export default function MenuCard() {
         const isPreviousDisabled = startIndex === 0;
         const isNextDisabled = startIndex + ITEM_PER_PAGE >= TOTAL_ITEMS;
         
+        const fullMenu = [...coffee, ...non_coffee, ...baked];
+
         return (
         <section className='menu container'>
-            <div className="menu-grid"> 
-                <div className="menu-title-grid">
-                    <div id="menu-title"><h2 >Menu Highlights</h2></div>
-                    {/* Navigation next/prev */}
-                    <div className="menu-slider-wrapper">
-                        <div className="slider-controls">
-                            <button onClick={handlePrev} disabled={isPreviousDisabled}>
-                                Prev
-                            </button>
-                        </div>
-                        <div className="slider-controls">
-                            <button onClick={handleNext} disabled={isNextDisabled}>
-                                Next
-                            </button>
+            <div className="highlight-container"> 
+                <div className="menu-header">
+                    <div id="menu-title"><h2>Menu Highlights</h2></div>
+                        {/* Navigation next/prev */}
+                        <div className="menu-slider-wrapper">
+                            <div className="slider-controls">
+                                <button onClick={handlePrev} disabled={isPreviousDisabled}>
+                                    Prev
+                                </button>
+                            </div>
+                            <div className="slider-controls">
+                                <button onClick={handleNext} disabled={isNextDisabled}>
+                                    Next
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
                     {/* Menu items grid*/}
-                    <div className="menu-grid-content">
+                    <div className="menu-viewpoint">
                         <div
                             className="menu-slider-track"
                             style={{ transform: `translateX(-${slideOffset}%)`, 
@@ -74,10 +76,53 @@ export default function MenuCard() {
                             ))}
                         </div>
                     </div>
+            </div>
+            
+            <br></br>
+
+            {/* menu lists */}
+            {fullMenu.map((category, index) => (
+                <div key={index} className="menu-list-section">
+                    
+                    {/* Left/Right Column: Menu Text */}
+                    <div className="menu-list">
+                        <div className="menu-list-header">
+                            <h2>{category.title}</h2>
+                        </div>
+
+                        <div className="menu-list-content">
+                            {/* Items Column - Aligned Left */}
+                            <div className="menu-list-items">
+                                {category.items.map((item, i) => (
+                                    <div key={i} className="menu-item-name">
+                                        {item.name}
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Prices Column - Aligned Right */}
+                            <div className="menu-list-prices">
+                                {category.items.map((item, i) => (
+                                    <div key={i} className="menu-item-price">
+                                        {item.price}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right/Left Column: Menu Image */}
+                    <div className="menu-list-pic">
+                        <div className="menu-image-frame">
+                            <img src={category.image} alt={category.title} />
+                        </div>
+                    </div>
+
+                </div>
+            ))}
+                
 
                     
-                
-            </div>
         </section>
     );
 }
