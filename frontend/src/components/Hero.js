@@ -2,16 +2,16 @@ import React from 'react';
 
 function Hero() {
     return(
-        <header className='header p-5'>
-            <div className='header-content'>
+        <header className='header py-5'>
+            <div className='container'>
                 <div className="row align-items-center">
 
                     {/* Text column */}
-                    <div className="col-md text-start p-5">
-                        <h1 className="display-6 fw-bold">
+                    <div className="col-md text-start">
+                        <h1 className="display-4 fw-bold">
                             Welcome to Indie Bites
                         </h1>
-                        <p className="lead p-1">
+                        <p className="lead">
                             Serving homemade baked goods and specialty coffee with love and care. Order online for pickup or delivery!
                         </p>
                     </div>
