@@ -412,27 +412,26 @@ section{
 }
 
 @media(min-width: 768px) {
-  .gal-card{
-    flex: 0 0 300px;
-  }
-
   .gallery-viewpoint{
     overflow: hidden;
+    width: 100%
   }
 
   .gallery-trail{
     gap: 20px;
     width: max-content;
-    animation: slideLoop 30s linear infinite;
+    animation: slideLoop 20s linear infinite;
     will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
   }
   .gallery-trail:hover{
     animation-play-state: paused;
   }
 
+ .gal-card{
+    flex: 0 0 300px;
+    margin-right: 20px;
+    overflow: hidden;
+  }
   .gal-card:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease;
@@ -443,7 +442,7 @@ section{
       transform: translateX(0);
     }
     to {
-      transform: translate(calc(-50% - 10px));
+      transform: translateX(-50%);
     }
   }
 }
