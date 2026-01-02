@@ -3,7 +3,11 @@ import React from 'react';
 export default function Contact() {
     return(
         <section id="contact"className="contact container">
+            <div className="contact-header">
+                    <h2>Contact Us</h2>
+            </div>
             <div className="contact-wrapper">
+                
                 {/* Left side contact information */}
                 <div className="contact-info">
                     <div className = "info-grid">
