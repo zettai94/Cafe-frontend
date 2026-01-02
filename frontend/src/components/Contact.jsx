@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Contact() {
     return(
-        <section className="contact container">
+        <section id="contact"className="contact container">
             <div className="contact-wrapper">
                 {/* Left side contact information */}
                 <div className="contact-info">

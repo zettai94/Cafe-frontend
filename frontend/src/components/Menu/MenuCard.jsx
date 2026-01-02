@@ -35,7 +35,7 @@ export default function MenuCard() {
         const fullMenu = [...coffee, ...non_coffee, ...baked];
 
         return (
-        <section className='menu container'>
+        <section id="menu" className='menu container'>
             <div className="highlight-container"> 
                 <div className="menu-header">
                     <div id="menu-title"><h2>Menu Highlights</h2></div>
