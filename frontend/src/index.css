@@ -449,7 +449,7 @@ section{
 
 /* CONTACT SECTION */
 .contact-wrapper{
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 30px;
   padding: 10px 0;
@@ -551,8 +551,9 @@ section{
 .footer-wrapper {
   width: 100%;
   background: var(--header-color);
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  text-align: center;;
 }
 
 
