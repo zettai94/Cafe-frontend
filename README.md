@@ -26,4 +26,3 @@ This project demonstrates front-end web development skills including responsive 
 - Customer account management
 - Menu management dashboard
 
-The website is live at https://indiebitescafe.vercel.app/ 
