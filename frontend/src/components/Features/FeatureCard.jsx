@@ -2,7 +2,7 @@ import { features } from "./Featured";
 
 export default function FeatureCard() { 
   return (
-    <section className="features container">
+    <section id="features"className="features container">
       <div className="features-grid">
         {features.map((item, index) => (
           <div key={index} className="features-item">
