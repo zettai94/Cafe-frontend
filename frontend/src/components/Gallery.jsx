@@ -12,7 +12,7 @@ export default function Gallery(){
         <section id="gallery" className="carousel container">
             <div className="gallery-header">
                 <h2>Gallery</h2>
-                <a href="#">See more...</a>
+                <a href="https://www.instagram.com/theindiebiteskch/" target="_black">See more...</a>
             </div>
             <div className="gallery-viewpoint">
                 <div className="gallery-trail">
