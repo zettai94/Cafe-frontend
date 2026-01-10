@@ -629,8 +629,18 @@ section{
   text-align: center;;
 }
 
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
-/* ORDER BUTTON */
+.social-icons ion-icon {
+  font-size: 2rem;
+  color: var(--text-light);
+}
+
+/* ORDER BUTTON with different variants */
 .nav-order-btn {
   padding: 5px 15px;
 }

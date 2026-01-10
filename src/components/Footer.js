@@ -8,7 +8,15 @@ function Footer() {
                 <p>&copy; 2025 The Indie Bites Kch - created by Silvia. All rights reserved.</p>
             </div>
             <div className="footer-content">
-                <OrderButton variant="footer-order-btn" />
+                <p>Follow us:</p>
+                <div className="social-icons">
+                    <a href="https://www.facebook.com/theindiekch/" target="_blank" rel="noopener noreferrer">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                    <a href="https://www.instagram.com/theindiebiteskch/" target="_blank" rel="noopener noreferrer">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                </div>
             </div>
         </section>
     );
