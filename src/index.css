@@ -445,7 +445,7 @@ section{
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  touch-action: pan-x;
+  touch-action: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width:none;
   -webkit-overflow-scrolling: touch;
@@ -470,6 +470,7 @@ section{
   aspect-ratio: 1/1;
   overflow: hidden;
   border-radius: 20px;
+  scroll-snap-align: center;
 }
 
 .gal-img{
