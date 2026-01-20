@@ -661,3 +661,12 @@ section{
   color: var(--text-light);
   text-decoration: underline;
 }
+
+.footer-wrapper {
+  padding: 20px 15px;
+  align-items: center;
+}
+
+.footer-content p {
+  color: var(--text-light);
+}
