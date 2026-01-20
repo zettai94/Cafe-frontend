@@ -1,6 +1,3 @@
-import React from 'react';
-import OrderButton from './OrderButton';
-
 function Footer() {
     return(
         <section className="footer-wrapper">

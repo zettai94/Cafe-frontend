@@ -1,4 +1,3 @@
-import React from 'react';
 import OrderButton from './OrderButton';
 
 function Navbar() {

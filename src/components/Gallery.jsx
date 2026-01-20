@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Gallery(){
     function importAll(r) {
         return r.keys().map(r);

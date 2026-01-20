@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function OrderButton( {variant, text = "Order Now"}) {
     const handleClick = () => {
         //temp

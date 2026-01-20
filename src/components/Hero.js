@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Hero() {
     return(
         <header className='header py-4 mt-5'>

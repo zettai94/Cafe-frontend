@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { menu, coffee, non_coffee, baked } from "./Menu";
 
 export default function MenuCard() { 
