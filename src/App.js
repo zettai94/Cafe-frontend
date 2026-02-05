@@ -11,6 +11,8 @@ function App() {
   return (
     <>
       <Navbar />
+        {/*  researching how to jump back and forth dynamically
+              from landing page to ordering page*/}
       <Hero />
       <FeatureCard />
       <MenuCard />
