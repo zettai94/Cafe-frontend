@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 export default function OrderButton( {variant, text = "Order Now"}) {
+    const navigate = useNavigate();
     const handleClick = () => {
-        //temp
-        alert("Feature coming soon. Thank you for your interest in my project! Please feel free to contact me for more information.");
+        navigate('/order');
     };
 
     return (
         <button className={`order-btn ${variant}`} 
-            onClick={handleClick} >Order Here</button>
+            onClick={handleClick}>{text}</button>
     );
 }

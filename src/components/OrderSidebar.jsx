@@ -23,7 +23,7 @@ const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, onCartClick }
 
                     <div className="nav-dropdown">
                         <div className="dropdown-label">
-                            <i className="icon-options"></i> {!isCollapsed && "Options"}
+                            <i className="icon-options"></i> {!isCollapsed && "Category"}
                         </div>
                         {!isCollapsed && (
                             <ul className="dropdown-items">
