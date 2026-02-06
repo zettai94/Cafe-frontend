@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import OrderButton from './OrderButton';
 
 function Navbar() {
@@ -10,7 +11,7 @@ function Navbar() {
         <nav className='navbar navbar-expand-md fixed-top'>
             <div className='container'>
                 {/* Brand */}
-                <a className='navbar-brand' href='/' onClick={backToTop}>Indie Bites</a>
+                <Link className='navbar-brand' to='/' onClick={backToTop}>Indie Bites</Link>
             
                 {/* Mobile toggle button */}
                 <button
@@ -51,7 +52,9 @@ function Navbar() {
                     </ul>
                 </div>
                 <div className="nav-order-wrapper">
-                    <OrderButton variant="nav-order-btn" text="Order Here"/>
+                    <Link to="/order">
+                        <OrderButton variant="nav-order-btn" text="Order Here"/>
+                    </Link>
                 </div>
             </div>
         </nav>

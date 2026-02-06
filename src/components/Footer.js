@@ -2,7 +2,7 @@ function Footer() {
     return(
         <section className="footer-wrapper">
             <div className="footer-content">
-                <p>&copy; 2025 The Indie Bites Kch - created by Silvia. All rights reserved.</p>
+                <p>&copy; 2026 The Indie Bites Kch - created by Silvia. All rights reserved.</p>
             </div>
             <div className="footer-content">
                 <p>Follow us:</p>
