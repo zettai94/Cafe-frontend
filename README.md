@@ -5,7 +5,7 @@ A modern, responsive landing page for a fictional café showcasing clean UI/UX d
 🔗 **[View Live Site](https://indiebitescafe.vercel.app/)**
 
 ## About
-![Indie Bites Front End](./IndieBitesResponsive.jpg)
+![Indie Bites Front End](./IndieBitesResponsive.png)
 This project demonstrates front-end web development skills including responsive design, modern CSS techniques, and user-friendly navigation. Built with a mobile-first approach to ensure optimal viewing across all devices.
 
 ## Technologies Used
