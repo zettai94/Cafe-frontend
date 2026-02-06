@@ -1,31 +1,41 @@
+import biscoffImg from '../../../assets/images/biscoffTiramisu.png';
+import sconesImg from '../../../assets/images/scones.png';
+import kyotoImg from '../../../assets/images/kyotosSummer.png';
+import smoresImg from '../../../assets/images/smoresChocolatePie.png';
+import carrotImg from '../../../assets/images/carrotWalnutCake.png';
+import mangoImg from '../../../assets/images/mangoCheesecake.png';
+import coffeeImg from '../../../assets/images/coffee.jpg';
+import hotChocoImg from '../../../assets/images/hotChoco.png';
+import pumpkinImg from '../../../assets/images/halloweenPumpkin.png';
+
 export const menu = [
   {
-    picture: '../images/biscoffTiramisu.png',
+    picture: biscoffImg,
     title: "Biscoff Tiramisu",
     description: "Classic tiramisu with a twist",
   },
   {
-    picture: '../images/scones.png',
+    picture: sconesImg,
     title: "Cranberry Scones",
     description: "Flaky & buttery, cranberries & hint of orange",
   },
   {
-    picture: '../images/kyotosSummer.png',
+    picture: kyotoImg,
     title: "Kyoto's Summer",
     description: "Creamy & rich matcha cake with adzuki bean, & mochi base",
   },
   {
-    picture: '../images/smoresChocolatePie.png',
+    picture: smoresImg,
     title: "S'mores Chocolate Pie",
     description: "Classic s'mores but a pie!",
   },
   {
-    picture: '../images/carrotWalnutCake.png',
+    picture: carrotImg,
     title: "Carrot Walnut Cake",
     description: "Classic carrot walnut cake with cranberries and coconut flakes",
   },
   {
-    picture: '../images/mangoCheesecake.png',
+    picture: mangoImg,
     title: "Mango Cheesecake",
     description: "Chilled cheesecake with mango puree & cubes",
   }
@@ -34,7 +44,7 @@ export const menu = [
 export const coffee = [
   {
     title: "Coffee",
-    image: '../images/coffee.jpg',
+    image: coffeeImg,
     items: [
       {
         name: "Latte",
@@ -59,7 +69,7 @@ export const coffee = [
 export const non_coffee = [
   {
     title: "Non-Coffee",
-    image:'../images/hotChoco.png',
+    image: hotChocoImg,
     items: [
       {
         name: "Hot Chocolate",
@@ -84,7 +94,7 @@ export const non_coffee = [
 export const baked = [
   {
     title: "Cakes & Pastries",
-    image: '../images/halloweenPumpkin.png',
+    image: pumpkinImg,
     items: [
       {
         name: "Cranberry Scones",

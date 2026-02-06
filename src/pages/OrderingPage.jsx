@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import OrderSidebar from './OrderSidebar';
+import OrderSidebar from '../components/ordering/OrderSidebar';
 
 
 const OrderingPage =() =>{

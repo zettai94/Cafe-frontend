@@ -1,3 +1,4 @@
+import orangSwissrollImg from '../../assets/images/orange_swissroll.png';
 function Hero() {
     return(
         <header className='header py-4 mt-5'>
@@ -17,7 +18,7 @@ function Hero() {
                     {/* Image column */}
                     <div className="col-md-6 text-center">
                         <div className="header-image-placeholder">
-                            <img src='../images/orange_swissroll.png' alt='orange swissroll and cranberry scones' className='img-fluid rounded'/>
+                            <img src={orangSwissrollImg} alt='orange swissroll and cranberry scones' className='img-fluid rounded'/>
                         </div>
                     </div>
                 </div>

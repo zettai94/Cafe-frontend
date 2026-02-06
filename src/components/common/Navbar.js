@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import OrderButton from './OrderButton';
+import OrderButton from './OrderButton.js';
 
 function Navbar() {
     const backToTop = (e) => {

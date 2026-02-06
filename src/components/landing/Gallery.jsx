@@ -1,10 +1,10 @@
 export default function Gallery(){
     function importAll(r) {
-        return r.keys().map(r);
+        return r.keys().map(item => r(item));
     }
 
-    const images = importAll(require.context('../../public/images', false, /\.(png|jpe?g|svg)$/));
-
+    const images = importAll(require.context('../../assets/images', false, /\.(png|jpe?g|svg)$/));
+    
     const doubleImages = [...images, ...images];
     return(
         <section id="gallery" className="carousel container">
@@ -16,7 +16,10 @@ export default function Gallery(){
                 <div className="gallery-trail">
                     {doubleImages.map((item, index) => (
                         <div key={index} className="gal-card"> 
-                            <img src={item} alt={`${index} - ${item}`} className='gal-img'/>
+                            <img 
+                                src={typeof item === 'string' ? item : item.default} 
+                                alt={`Gallery item ${index}`} 
+                                className='gal-img'/>
                         </div>
                     ))}
                 </div>
