@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import OrderSidebar from '../components/ordering/OrderSidebar';
-
-
+import OrderSidebar from '../../components/ordering/OrderSidebar';
+import ProductGrid from '../../components/ordering/ProductGrid';
+import './OrderingPage.css';
 const OrderingPage =() =>{
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [category, setCategory] = useState('All');
@@ -15,6 +15,7 @@ const OrderingPage =() =>{
                 setCategory={setCategory}
                 onCartClick={() => setIsCartOpen(true)}
             />
+            <ProductGrid />
         </div>
     );
 }
