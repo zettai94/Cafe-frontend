@@ -1,0 +1,64 @@
+.ps-menu-button:hover, 
+.ps-menu-button.ps-active,
+.ps-open > .ps-menu-button {
+    /* remove active select color */
+    background-color: transparent !important;
+}
+
+.ps-sidebar-container {
+    display: flex !important;
+    flex-direction: row !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    justify-content: flex-end;
+}
+
+.menu-navi {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-toggle {
+    flex: 0 0 20px; 
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.ps-menu-root, .ps-menu-button {
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+}
+
+.ps-collapsed .menu-navi {
+    display: none; 
+}
+
+.nav-box {
+    margin: 10px auto; 
+    color: var(--text-light);
+    font-family: 'Playfair Display', serif;
+    font-size:1.1rem;
+}
+
+.ps-submenu-content {
+    background-color:transparent !important;
+    color: var(--text-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+}
+
+.sub-item .ps-menu-button{
+    padding-left: 30px !important;
+}
+
+.collapse-toggle
+{
+    background-color: transparent;
+    border: none;
+}
