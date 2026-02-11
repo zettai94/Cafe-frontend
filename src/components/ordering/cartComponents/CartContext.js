@@ -6,6 +6,11 @@ const CartContext = createContext({});
 export const CartProvider = ({ children }) => {
     const [cartCount, setCartCount] = useState(0);
 
+    /* for future usage: check orderid
+        create or retrieve orderid upon clicking on "Cart"
+        Cart panel will also open onClick
+     */
+
     const refreshCart = async () => {
         try {
             // temp
