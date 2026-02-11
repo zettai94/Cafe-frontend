@@ -1,9 +1,11 @@
 import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
+import { useCart } from './cartComponents/CartContext'
 import { CATEGORIES } from '../../constants/categories';
 
 const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategory }) => {
+    const { cartCount } = useCart();
    return(
     <div className="sidebar-container">
         <Sidebar 
@@ -39,14 +41,20 @@ const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategor
                         <MenuItem 
                             key={cat.value} 
                             onClick={() => setCategory(cat.value)}
-                            className={activeCategory === cat.value ? 'active-cat' : ''}
+                            className={`sub-item ${activeCategory === cat.value ? 'active-cat' : ''}`}
                         >
                             {cat.label}
                         </MenuItem>
                         ))}
                     </SubMenu>
-                    <MenuItem className="custom-nav">
-                        <div className="nav-box">Cart</div>
+                    <MenuItem className="custom-nav" /*onClick={onCartClick} tbc*/ >
+                        <div className="nav-box cart-container">
+                            Cart
+                            {/* show counter only if cartCount is more than 0 */}
+                            {cartCount > 0 && (
+                                <span className="cart-counter">{cartCount}</span>
+                            )}
+                        </div>
                     </MenuItem>
                 </Menu>
             </div>
