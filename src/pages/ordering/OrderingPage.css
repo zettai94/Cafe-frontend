@@ -87,5 +87,23 @@
     border: 1px solid var(--primary-color);
     border-radius: 15px;
     min-height: 150px;
+    display: flex;
+    flex-direction: column;
 }
+
+.product-image-wrapper{
+    aspect-ratio: 1/1;
+}
+
+.product-info h3{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+}
+
+.product-footer{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+}
+
+
 
