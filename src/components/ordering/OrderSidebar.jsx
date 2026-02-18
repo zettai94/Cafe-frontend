@@ -10,7 +10,7 @@ const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategor
     <div className="sidebar-container">
         <Sidebar 
             collapsed={isCollapsed}
-            backgroundColor="var(--primary-color)"
+            backgroundColor="var(--header-color)"
             width="40%"
             collapsedWidth="60px"
             transitionDuration={300}

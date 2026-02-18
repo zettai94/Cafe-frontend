@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     const wakingBackend = async() => {
       try{
-        const apiURL = process.env.REACT_APP_API_URL;
+        const apiURL = process.env.REACT_APP_API_URL || "https://localhost:8080";
         console.log("Pinging backend to wake up...");
         await fetch(`${apiURL}/api/products`);
         console.log("Backend is alive!");
