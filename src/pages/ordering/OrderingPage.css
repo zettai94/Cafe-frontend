@@ -103,18 +103,43 @@
     border-radius: 15px;
 }
 
+.product-info{
+    padding: 0 20px 20px 20px;
+    display:flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .product-info h3{
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.product-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-family: 'Roboto', sans-serif;
 }
 
 .product-footer{
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-btn{
+    background: var(--button-color1);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--text-light);
 }
 
 @media (min-width: 768px) {
-    
+
     
 }
 
