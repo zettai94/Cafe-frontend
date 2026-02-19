@@ -4,7 +4,7 @@ import ProductGrid from '../../components/ordering/ProductGrid';
 import { CartProvider } from '../../components/ordering/cartComponents/CartContext';
 import './OrderingPage.css';
 const OrderingPage =() =>{
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState(true);
     const [category, setCategory] = useState('All');
     const [isCartOpen, setIsCartOpen] = useState(false);
 
