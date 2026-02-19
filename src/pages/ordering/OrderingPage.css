@@ -85,14 +85,22 @@
 
 .product-card{
     border: 1px solid var(--primary-color);
-    border-radius: 15px;
-    min-height: 150px;
+    border-radius: 25px;
     display: flex;
     flex-direction: column;
 }
 
 .product-image-wrapper{
     aspect-ratio: 1/1;
+    overflow: hidden;  
+    padding:15px;
+}
+
+.product-img {
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
 }
 
 .product-info h3{
@@ -103,6 +111,11 @@
 .product-footer{
     font-family: 'Roboto', sans-serif;
     font-size: 1.2rem;
+}
+
+@media (min-width: 768px) {
+    
+    
 }
 
 

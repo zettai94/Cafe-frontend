@@ -48,7 +48,7 @@ const ProductGrid = ({ activeCategory }) => {
                 <div key={product.productId} className="product-card">
                     <div className="product-image-wrapper">
                         {/* Ensure your images are in the public/images folder */}
-                        <img src={product.productImageURL} alt={product.productName} />
+                        <img src={product.productImageURL} alt={product.productName} className="product-img" />
                     </div>
                     <div className="product-info">
                         <h3>{product.productName}</h3>
