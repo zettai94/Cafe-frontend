@@ -145,6 +145,14 @@
     padding: 10px 15px;
 }
 
+.sold-out-badge {
+    color: red;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
 /* Tablet views */
 @media (min-width: 768px) and (max-width: 1023px) {
     .product-grid{
