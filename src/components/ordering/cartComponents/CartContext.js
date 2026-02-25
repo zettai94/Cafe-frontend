@@ -62,7 +62,7 @@ export const CartProvider = ({ children }) => {
         if(existingId) {
            refreshCart();
         }
-    }, [refreshCart]);
+    }, []);
 
     return (
         <CartContext.Provider value={{ cartCount, cartItems, orderId, refreshCart, addToCart }}>

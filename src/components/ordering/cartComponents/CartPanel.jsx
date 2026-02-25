@@ -1,4 +1,3 @@
-import { use } from 'react';
 import { useCart } from './CartContext';
 import { IoClose } from 'react-icons/io5';
 
