@@ -31,8 +31,11 @@ export const CartProvider = ({ children }) => {
     }, [API_BASE_URL]);
 
     const addToCart = async(productId) => {
+        const currentId = localStorage.getItem('currentOrderId');
+        
         try{
             const response = await axios.post(`${API_BASE_URL}/api/orders/add-items`, {
+                orderId: currentId,
                 productId: productId,
                 quantity: 1
             });
@@ -51,7 +54,7 @@ export const CartProvider = ({ children }) => {
     
     useEffect(() => {
         refreshCart();
-    }, [refreshCart]);
+    }, []);
 
     return (
         <CartContext.Provider value={{ cartCount, orderId, refreshCart, addToCart }}>
