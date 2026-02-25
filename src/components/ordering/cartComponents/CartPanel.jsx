@@ -1,9 +1,9 @@
 import { use } from 'react';
-import { useCart } from './cartComponents/CartContext';
+import { useCart } from './CartContext';
 import { IoClose } from 'react-icons/io5';
 
 const CartPanel = ({ isOpen, onClose }) => {
-    const { cartCount, cartItems, updateQuantity, removeFromCart } = useCart();
+    const { cartCount, cartItems = [], updateQuantity, removeFromCart } = useCart();
 
     if (!isOpen) return null;
 
@@ -18,7 +18,7 @@ const CartPanel = ({ isOpen, onClose }) => {
                 </div>
 
                 <div className="cart-content">
-                    {cartItems.length === 0 ? (
+                    {cartItems?.length === 0 ? (
                         <p>Your cart is empty.</p>
                     ) : (
                         cartItems.map((item)=> (

@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import OrderSidebar from '../../components/ordering/OrderSidebar';
 import ProductGrid from '../../components/ordering/ProductGrid';
+import CartPanel from '../../components/ordering/cartComponents/CartPanel';
 import { CartProvider } from '../../components/ordering/cartComponents/CartContext';
 import './OrderingPage.css';
+
 const OrderingPage =() =>{
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [category, setCategory] = useState('All');
     const [isCartOpen, setIsCartOpen] = useState(false);
+    
 
     return(
         <CartProvider>
@@ -17,6 +20,7 @@ const OrderingPage =() =>{
                     setCategory={setCategory}
                     onCartClick={() => setIsCartOpen(true)}
                 />
+                <CartPanel isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
                 <ProductGrid />
             </div>
         </CartProvider>

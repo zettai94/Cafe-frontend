@@ -5,6 +5,7 @@ const CartContext = createContext({});
 
 export const CartProvider = ({ children }) => {
     const [cartCount, setCartCount] = useState(0);
+    const [cartItems, setCartItems] = useState([]);
     const [orderId, setOrderId] = useState(localStorage.getItem('currentOrderId'));
 
     const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://localhost:8080';
@@ -22,10 +23,13 @@ export const CartProvider = ({ children }) => {
             
             // get quantity from orderItem of currentOrder
             const items = response.data.orderItems || [];
+            setCartItems(items);
+
             const total = items.reduce((acc, item) => acc + item.quantity, 0);
             setCartCount(total);
         } catch (error) {
             console.error("Error connecting to Spring backend:", error);
+            setCartItems([]);
             setCartCount(0);
         }
     }, [API_BASE_URL]);
@@ -46,6 +50,7 @@ export const CartProvider = ({ children }) => {
                 setOrderId(newId);
                 localStorage.setItem('currentOrderId', newId);
             }
+            await refreshCart();
         } catch (e)
         {
             console.log("Couldn't add item: " + e);
@@ -53,11 +58,14 @@ export const CartProvider = ({ children }) => {
     };
     
     useEffect(() => {
-        refreshCart();
-    }, []);
+        const existingId = localStorage.getItem('currentOrderId');
+        if(existingId) {
+           refreshCart();
+        }
+    }, [refreshCart]);
 
     return (
-        <CartContext.Provider value={{ cartCount, orderId, refreshCart, addToCart }}>
+        <CartContext.Provider value={{ cartCount, cartItems, orderId, refreshCart, addToCart }}>
             {children}
         </CartContext.Provider>
     );

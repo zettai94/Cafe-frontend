@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from './cartComponents/CartContext'
 import { CATEGORIES } from '../../constants/categories';
 
-const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategory }) => {
+const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategory, onCartClick }) => {
     const { cartCount } = useCart();
    return(
     <div className="sidebar-container">
@@ -47,7 +47,7 @@ const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategor
                         </MenuItem>
                         ))}
                     </SubMenu>
-                    <MenuItem className="custom-nav" /*onClick={onCartClick} tbc*/ >
+                    <MenuItem className="custom-nav" onClick={() => onCartClick(true)}>
                         <div className="nav-box cart-container">
                             Cart
                             {/* show counter only if cartCount is more than 0 */}
