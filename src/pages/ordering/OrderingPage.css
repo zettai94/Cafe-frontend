@@ -191,6 +191,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);;
         padding: 30px 65px;
+        height: auto;
     }
     
     .product-card{
@@ -210,6 +211,15 @@
     .add-btn{
         padding: 10px 15px;
         font-size: larger;
+    }
+
+    .product-info h3{
+        word-wrap:break-word;
+        font-size: clamp(1rem, 4vw, 2rem);
+    }
+
+    .product-info p {
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
     }
 }
 
