@@ -7,7 +7,7 @@ export default function OrderButton( {variant, text = "Order Now"}) {
     };
 
     return (
-        <button className={`order-btn ${variant}`} 
+        <button className={`general-btn ${variant}`} 
             onClick={handleClick}>{text}</button>
     );
 }

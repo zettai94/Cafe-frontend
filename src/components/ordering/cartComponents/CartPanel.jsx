@@ -7,16 +7,16 @@ const CartPanel = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return(
-        <div className="cart-container">
+        <div className="cart-panel-wrapper">
             <div className="cart-panel">
                 <div className="cart-header">
                     <h2>Your Cart</h2>
                     <button className="close-cart-btn" onClick={onClose}>
-                        <IoClose size={24} />
+                        <IoClose size={30} />
                     </button>
                 </div>
 
-                <div className="cart-content">
+                <div className={`cart-content ${cartItems.length === 0 ? 'is-empty' : ''}`}>
                     {cartItems?.length === 0 ? (
                         <p>Your cart is empty.</p>
                     ) : (
@@ -39,8 +39,8 @@ const CartPanel = ({ isOpen, onClose }) => {
                     )}
                 </div>
                 <div className="cart-footer">
-                    <button className="cart-btn cancel-btn" onClick={onClose}>Cancel</button>
-                    <button className="cart-btn checkout-btn">Checkout</button>
+                    <button className="general-btn cancel-btn" onClick={onClose}>Cancel</button>
+                    <button className="general-btn checkout-btn">Checkout</button>
                 </div>
             </div>
         </div>

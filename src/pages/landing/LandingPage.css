@@ -539,7 +539,7 @@
 
 .btn-submit,
 /* order button here too*/
-.order-btn {
+.general-btn {
   background-color: var(--button-color1);
   color: var(--text-light);
   padding: 12px 18px;
