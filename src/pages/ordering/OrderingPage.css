@@ -189,14 +189,15 @@
 @media (min-width: 1024px) {
     .product-grid{
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 60px;
+        grid-template-columns: repeat(3, 1fr);;
         padding: 30px 65px;
     }
     
     .product-card{
         border: 1.5px solid var(--primary-color);
-        min-height: 450px;
+        max-height: 650px;
+        margin: 30px 40px;
+        padding: 5px 10px;
     }
 
     .product-image-wrapper{
