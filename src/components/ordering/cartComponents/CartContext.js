@@ -21,11 +21,14 @@ export const CartProvider = ({ children }) => {
         try {
             const response = await axios.get(`${API_BASE_URL}/api/orders/${currentId}`);
             
+            //debug:
+            console.log("Cart data from backend:", response.data);
+
             // get quantity from orderItem of currentOrder
-            const items = response.data.orderItems || [];
+            const items = response.data.orderList || [];
             setCartItems(items);
 
-            const total = items.reduce((acc, item) => acc + item.quantity, 0);
+            const total = items.reduce((acc, item) => acc + (item.orderQty || 0), 0);
             setCartCount(total);
         } catch (error) {
             console.error("Error connecting to Spring backend:", error);
@@ -44,9 +47,10 @@ export const CartProvider = ({ children }) => {
                 quantity: 1
             });
 
-            if(response.data.orderId && !orderId)
+            const newId = response.data.orderId;
+            if(newId && newId !== currentId)
             {
-                const newId = response.data.orderId;
+                //if it's different from current, update local storage and state
                 setOrderId(newId);
                 localStorage.setItem('currentOrderId', newId);
             }
@@ -54,6 +58,27 @@ export const CartProvider = ({ children }) => {
         } catch (e)
         {
             console.log("Couldn't add item: " + e);
+
+            //if reponse status is not 
+            if(e.response && (e.response.status === 400 || e.response.status === 403))
+            {
+                const userConfirmed = window.confirm(
+                    "Your previous session has expired. Do you want to start a new order?"
+                )
+                if(userConfirmed)
+                {
+                    localStorage.removeItem('currentOrderId');
+                    setOrderId(null);
+                    console.log("Starting new order...");
+                    await addToCart(productId);
+                }
+                else{
+                    localStorage.removeItem('currentOrderId');
+                    setOrderId(null);
+                    setCartCount(0);
+                    setCartItems([]);
+                }
+            }
         }
     };
     
@@ -62,7 +87,7 @@ export const CartProvider = ({ children }) => {
         if(existingId) {
            refreshCart();
         }
-    }, []);
+    }, [refreshCart]);
 
     return (
         <CartContext.Provider value={{ cartCount, cartItems, orderId, refreshCart, addToCart }}>

@@ -7,10 +7,11 @@ const ProductGrid = ({ activeCategory }) => {
     const [loading, setLoading] = useState(true);
     const { addToCart } = useCart();
 
-    const BASE_URL = process.env.REACT_APP_API_URL || 'https://indiebites-api.onrender.com';
-    const PRODUCTS_URL = `${BASE_URL}/api/products`;
-    
+      
     useEffect(() => {
+        const BASE_URL = process.env.REACT_APP_API_URL || 'https://indiebites-api.onrender.com';
+        const PRODUCTS_URL = `${BASE_URL}/api/products`;
+
         const fetchProducts = async() => {
             setLoading(true);
             try {
@@ -60,7 +61,7 @@ const ProductGrid = ({ activeCategory }) => {
                             {(product.inventory ===null || product.inventory.inStock > 0 )? (
                                 <button 
                                     className="add-btn" 
-                                    onClick={() => addToCart(product.productId)}
+                                    onClick={() => addToCart(product.productId, 1)}
                                     // future: allow quantity choice and red quantity show when stock 5 or below
                                 >
                                     +

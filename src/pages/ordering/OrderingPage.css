@@ -52,7 +52,6 @@
     font-size:1.1rem;
 }
 
-
 .ps-submenu-content {
     background-color:transparent !important;
     color: var(--text-light);
@@ -67,9 +66,26 @@
     padding-left: 5px;
 }
 
-
 .sub-item .ps-menu-button{
     padding-left: 15px !important;
+}
+
+.cart-container {
+    display:flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.cart-counter {
+    background-color: var(--button-color1);
+    color: var(--text-light);
+    min-width: 20px;
+    padding: 2px 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Product Grid */

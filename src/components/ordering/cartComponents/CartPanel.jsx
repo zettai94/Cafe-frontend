@@ -21,16 +21,16 @@ const CartPanel = ({ isOpen, onClose }) => {
                         <p>Your cart is empty.</p>
                     ) : (
                         cartItems.map((item)=> (
-                            <div key={item.productId} className="cart-item-row">
+                            <div key={item.orderItemId} className="cart-item-row">
                                 <div className="cart-item-pic">
-                                    <img src={item.productImageURL} alt={item.productName} />
+                                    <img src={item.product?.productImageURL} alt={item.product.productName} />
                                 </div>
                                 <div className="cart-item-info">
-                                    <span className="cart-item-name">{item.productName} x {item.quantity}</span>
+                                    <span className="cart-item-name">{item.product?.productName} x {item.orderQty}</span>
                                 </div>
                                 <div className="cart-item-actions">
                                     {/* Future implementation: allow update quantity */}
-                                    <button className="cart-remove-item-btn" onClick={() => removeFromCart(item.productId)}>
+                                    <button className="cart-remove-item-btn" onClick={() => removeFromCart(item.product?.productId)}>
                                         <IoClose/>
                                     </button>
                                 </div>

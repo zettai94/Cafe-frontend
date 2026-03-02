@@ -49,7 +49,7 @@ const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategor
                     </SubMenu>
                     <MenuItem className="custom-nav" onClick={() => onCartClick(true)}>
                         <div className="nav-box cart-container">
-                            Cart
+                            <span className="nav-item">Cart</span>
                             {/* show counter only if cartCount is more than 0 */}
                             {cartCount > 0 && (
                                 <span className="cart-counter">{cartCount}</span>
