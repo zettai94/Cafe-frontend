@@ -33,6 +33,7 @@ const CartPanel = ({ isOpen, onClose }) => {
                                     <button className="cart-remove-item-btn" onClick={() => removeFromCart(item.product?.productId)}>
                                         <IoClose/>
                                     </button>
+                                    {/* close button not functioning properly*/}
                                 </div>
                             </div>
                         ))

@@ -70,6 +70,7 @@ const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategor
                                             color={"var(--text-light)"}
                                             size={22} />
                                     )}
+                                    
                 </button>
             </div>
         </Sidebar>
