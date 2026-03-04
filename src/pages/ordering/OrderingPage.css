@@ -254,7 +254,7 @@
     backdrop-filter: blur(3px);
     opacity: 0.9;
     border-radius: 25px;
-    z-index: 1000;
+    z-index: 2000;
 }
 
 .cart-panel {
@@ -287,7 +287,7 @@
     flex: 1; 
     width: 100%;
     margin: 20px 0; 
-    padding: 20px;
+    padding: 10px;
     border: 1px solid white;
     border-radius: 20px;
     box-sizing: border-box;
@@ -314,3 +314,91 @@
     width: 100%;
 }
 
+.cart-item-row {
+    display:flex;
+    gap: 12px;
+    padding: 5px;
+    align-items: center;
+    border-radius: 12px;
+    background-color: bisque;
+    border: 1px solid var(--button-color1);
+}
+
+.cart-item-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cart-item-pic img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.cart-item-info {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    justify-content: center;
+}
+
+/* Cart content: Ipad, Surface, Asus */
+@media(min-width: 768px) {
+    .cart-item-row{
+        padding:15px;
+        gap: 15px;
+        border-radius: 15px;
+    }
+
+    .cart-item-pic{
+        width: 115px;
+        height: 115px;
+    }
+
+    .cart-item-info {
+        font-size: 1.8rem;
+    }
+}
+
+/* Cart Panel and content : Desktop views */
+@media (min-width: 1024px) {
+    .cart-content{
+        padding: 20px;
+    }
+
+    .cart-item-row {
+        display: flex;
+        border-radius: 15px;
+        padding: 15px 20px;
+        gap: 15px;
+        background-color: bisque;
+        align-items: center;
+    }
+
+    .cart-item-pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        overflow: hidden;
+        flex-shrink: 0; /*this prevents the image from being squashed*/
+    }
+
+    .cart-item-pic img{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .cart-item-info {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 2.2rem;
+        justify-content: center;
+    }
+}
