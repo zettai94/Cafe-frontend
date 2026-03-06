@@ -32,7 +32,7 @@ const CartPanel = ({ isOpen, onClose }) => {
                                 </div>
                                 <div className="cart-item-actions">
                                     {/* Future implementation: allow update quantity */}
-                                    <button className="cart-remove-item-btn" onClick={() => removeFromCart(item.product?.productId)}>
+                                    <button className="cart-remove-item-btn" onClick={() => removeFromCart(item.orderItemId)}>
                                         <IoClose/>
                                     </button>
                                     {/* close button not functioning properly*/}

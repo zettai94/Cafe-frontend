@@ -9,18 +9,20 @@ const ProductGrid = ({ activeCategory }) => {
 
       
     useEffect(() => {
-        const BASE_URL = process.env.REACT_APP_API_URL || 'https://indiebites-api.onrender.com';
+        const BASE_URL = process.env.REACT_APP_API_URL || 'https://localhost:8080';
         const PRODUCTS_URL = `${BASE_URL}/api/products`;
 
         const fetchProducts = async() => {
             setLoading(true);
             try {
-                const isAll = !activeCategory || activeCategory === 'All';
-                const url = isAll
-                    ? PRODUCTS_URL
-                    : `${PRODUCTS_URL}?category=${activeCategory}`;
-
-                const response = await axios.get(url);
+                const params = new URLSearchParams();
+                if (activeCategory && activeCategory !== 'All') {
+                    params.append('category', activeCategory.toLowerCase());
+                }
+                
+                const queryString = params.toString();
+                const finalURL = queryString ? `${PRODUCTS_URL}?${queryString}` : PRODUCTS_URL;
+                const response = await axios.get(finalURL);
                 setProducts(response.data);
             } catch (e)
             {

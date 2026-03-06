@@ -81,6 +81,25 @@ export const CartProvider = ({ children }) => {
             }
         }
     };
+
+    const removeFromCart = async(orderItemId) => {
+        const currentId = localStorage.getItem('currentOrderId');
+        if(!currentId) return;
+
+        try {
+            await axios.delete(`${API_BASE_URL}/api/orders/${currentId}/items/${orderItemId}`);
+            await refreshCart();
+            const response = await axios.get(`${API_BASE_URL}/api/orders/${currentId}`);
+            if(!response.data) {
+                localStorage.removeItem('currentOrderId');
+                setOrderId(null);
+                setCartCount(0);
+                setCartItems([]);
+            }
+        } catch (e) {
+            console.error("Couldn't remove item: " + e.message);
+        }
+    };
     
     useEffect(() => {
         const existingId = localStorage.getItem('currentOrderId');
@@ -90,7 +109,7 @@ export const CartProvider = ({ children }) => {
     }, [refreshCart]);
 
     return (
-        <CartContext.Provider value={{ cartCount, cartItems, orderId, refreshCart, addToCart }}>
+        <CartContext.Provider value={{ cartCount, cartItems, orderId, refreshCart, addToCart, removeFromCart }}>
             {children}
         </CartContext.Provider>
     );
