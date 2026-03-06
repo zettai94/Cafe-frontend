@@ -3,6 +3,7 @@ import { IoClose } from 'react-icons/io5';
 
 const CartPanel = ({ isOpen, onClose }) => {
     const { cartCount, cartItems = [], updateQuantity, removeFromCart } = useCart();
+    const isCartEmpty = cartCount === 0;
 
     if (!isOpen) return null;
 
@@ -43,7 +44,9 @@ const CartPanel = ({ isOpen, onClose }) => {
                 </div>
                 <div className="cart-footer">
                     <button className="general-btn cancel-btn" onClick={onClose}>Cancel</button>
-                    <button className="general-btn checkout-btn">Checkout</button>
+                    <button className="general-btn checkout-btn"
+                            disabled={isCartEmpty}
+                            onClick={()=> {/* Navigate to checkout; tbc */}}>Checkout</button>
                 </div>
             </div>
         </div>
