@@ -87,14 +87,24 @@ export const CartProvider = ({ children }) => {
         if(!currentId) return;
 
         try {
-            await axios.delete(`${API_BASE_URL}/api/orders/${currentId}/items/${orderItemId}`);
-            await refreshCart();
-            const response = await axios.get(`${API_BASE_URL}/api/orders/${currentId}`);
-            if(!response.data) {
+            const response= await axios.delete(`${API_BASE_URL}/api/orders/${currentId}/items/${orderItemId}`);
+        
+            //if order was empty, java delete the order items list
+            if(typeof response.data === 'string')
+            {
                 localStorage.removeItem('currentOrderId');
                 setOrderId(null);
                 setCartCount(0);
                 setCartItems([]);
+                return;
+            }
+            else
+            {
+                //if oder still exists, return the updated order items list
+                const updatedItems = response.data.orderList || [];
+                setCartItems(updatedItems);
+                const total = updatedItems.reduce((acc, item) => acc + (item.orderQty || 0), 0);
+                setCartCount(total);
             }
         } catch (e) {
             console.error("Couldn't remove item: " + e.message);
