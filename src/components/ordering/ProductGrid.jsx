@@ -7,7 +7,15 @@ const ProductGrid = ({ activeCategory }) => {
     const [loading, setLoading] = useState(true);
     const { addToCart } = useCart();
 
-      
+    const getTitle = () => {
+        if(!activeCategory || activeCategory === 'All' || activeCategory === '')
+        {
+            return "View All";
+        }
+        const formatted = activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1);
+        return `Category: ${formatted}`;
+    };  
+
     useEffect(() => {
         const BASE_URL = process.env.REACT_APP_API_URL || 'https://localhost:8080';
         const PRODUCTS_URL = `${BASE_URL}/api/products`;
@@ -46,43 +54,50 @@ const ProductGrid = ({ activeCategory }) => {
     }
     
     return (
-        <div className="product-grid">
-            {products.length > 0? (
-                products.map((product) => (
-                    <div key={product.productId} className="product-card">
-                        <div className="product-image-wrapper">
-                            {/* Ensure your images are in the public/images folder */}
-                            <img src={product.productImageURL} alt={product.productName} className="product-img" />
-                        </div>
-                        <div className="product-info">
-                            <h3>{product.productName}</h3>
-                            <p>{product.description}</p>
-                            <div className="product-footer">
-                                <span className="price">${product.productPrice.toFixed(2)}</span>
-                                
-                                {/* Inventory Logic */}
-                                {(product.inventory ===null || product.inventory.inStock > 0 )? (
-                                    <button 
-                                        className="add-btn" 
-                                        onClick={() => addToCart(product.productId, 1)}
-                                        // future: allow quantity choice and red quantity show when stock 5 or below
-                                    >
-                                        +
-                                    </button>
-                                
-                                ) : (
-                                    <span className="sold-out-badge">Out of Stock</span>
-                                )}
+        <div className="product-grid-container">
+            <div className="category-header">
+                <h2 className="category-title">{getTitle()}</h2>
+                <hr className="header-underline" />
+            </div>
+        
+            <div className="product-grid">
+                {products.length > 0? (
+                    products.map((product) => (
+                        <div key={product.productId} className="product-card">
+                            <div className="product-image-wrapper">
+                                {/* Ensure your images are in the public/images folder */}
+                                <img src={product.productImageURL} alt={product.productName} className="product-img" />
+                            </div>
+                            <div className="product-info">
+                                <h3>{product.productName}</h3>
+                                <p>{product.description}</p>
+                                <div className="product-footer">
+                                    <span className="price">${product.productPrice.toFixed(2)}</span>
+                                    
+                                    {/* Inventory Logic */}
+                                    {(product.inventory ===null || product.inventory.inStock > 0 )? (
+                                        <button 
+                                            className="add-btn" 
+                                            onClick={() => addToCart(product.productId, 1)}
+                                            // future: allow quantity choice and red quantity show when stock 5 or below
+                                        >
+                                            +
+                                        </button>
+                                    
+                                    ) : (
+                                        <span className="sold-out-badge">Out of Stock</span>
+                                    )}
+                                </div>
                             </div>
                         </div>
+                    ))
+                ) : (
+                    <div className="empty-category">
+                        <h2>Oops!</h2>
+                        <p>Nothing available under <strong>{activeCategory}</strong> right now.</p>
                     </div>
-                ))
-            ) : (
-                <div className="empty-category">
-                    <h2>Oops!</h2>
-                    <p>Nothing available under <strong>{activeCategory}</strong> right now.</p>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 }
