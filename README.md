@@ -5,7 +5,7 @@ A modern, responsive landing page for a fictional café showcasing clean UI/UX d
 🔗 **[View Live Site](https://indiebitescafe.vercel.app/)**
 
 ## About
-![Indie Bites Front End](./assets/IndieBitesResponsive.png)
+![Indie Bites Front End](./assets/images/IndieBitesResponsive.png)
 This project demonstrates front-end web development skills including responsive design, modern CSS techniques, and user-friendly navigation. Built with a mobile-first approach to ensure optimal viewing across all devices.
 
 ## Technologies Used
@@ -25,7 +25,7 @@ This project demonstrates front-end web development skills including responsive 
 I am currently architecting a scalable ordering platform. Below is the active wireframe for the dashboard, which will feature a retractable sidebar and a dynamic cart system.
 
 ### Phase 2 Wireframe
-![Ordering Page Wireframe](./assets/WireFrame%20OrderPage.png)
+![Ordering Page Wireframe](./assets/images/WireFrame OrderPage.png)
 Yup... That is on Paint (call me old fashion or cheap) :see_no_evil:
 
 **Planned Features for Phase 2:**
