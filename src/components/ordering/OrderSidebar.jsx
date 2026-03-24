@@ -6,6 +6,12 @@ import { CATEGORIES } from '../../constants/categories';
 
 const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategory, onCartClick }) => {
     const { cartCount } = useCart();
+
+    const handleNavi = (action) => {
+        if(action) action();
+        setIsCollapsed(true);
+    };
+
    return(
     <div className="sidebar-container">
         <Sidebar 
@@ -24,13 +30,14 @@ const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategor
                     <MenuItem 
                         component={<Link to="/" />} 
                         className="custom-nav"
+                        onClick={() => handleNavi()}
                     > 
                         <div className="nav-box logo-box">Indie Bites</div> 
                     </MenuItem>
                     <MenuItem component={<Link to="/" />} className="nav-menu-item">
                         <div className="nav-box">Home</div>
                     </MenuItem>
-                    <MenuItem onClick={() => setCategory('')} className="nav-menu-item">
+                    <MenuItem onClick={() => handleNavi(()=> setCategory(''))} className="nav-menu-item">
                         <div className="nav-box">View All</div>
                     </MenuItem>
                     <SubMenu 
@@ -40,14 +47,14 @@ const OrderSidebar = ( { isCollapsed, setIsCollapsed, setCategory, activeCategor
                         {Object.values(CATEGORIES).map((cat) => (
                         <MenuItem 
                             key={cat.value} 
-                            onClick={() => setCategory(cat.value)}
+                            onClick={() => handleNavi(()=> setCategory(cat.value))}
                             className={`sub-item ${activeCategory === cat.value ? 'active-cat' : ''}`}
                         >
                             {cat.label}
                         </MenuItem>
                         ))}
                     </SubMenu>
-                    <MenuItem className="custom-nav" onClick={() => onCartClick(true)}>
+                    <MenuItem className="custom-nav" onClick={() => handleNavi(()=> onCartClick(true))}>
                         <div className="nav-box cart-container">
                             <span className="nav-item">Cart</span>
                             {/* show counter only if cartCount is more than 0 */}

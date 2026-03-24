@@ -25,16 +25,19 @@ export const CartProvider = ({ children }) => {
             //console.log("Cart data from backend:", response.data);
 
             // get quantity from orderItem of currentOrder
-            const items = response.data.orderList || [];
+            let items = response.data.orderList || [];
             const now = new Date();
             const expiredItems = items.filter(item => {
                 const expiryString = item.product?.inventory?.holdExpiresAt;
-                if (!expiryString) return false; // If no expiry, consider it valid
-                return new Date(expiryString) < now;
+                if(!expiryString) return false; // if no expiry, consider it not expired
+                const utcExpiryString = expiryString.includes('Z') ? expiryString : `${expiryString}Z`;
+                const expiryDate = new Date(utcExpiryString);
+                const now = new Date();
+                return expiryDate < now;
             });
 
             if(expiredItems.length > 0) {
-                //remove only expired tracked item from cart
+                //remove all expired items from order and alert user which items were removed
                 for(const item of expiredItems)
                 {
                     await axios.delete(`${API_BASE_URL}/api/orders/${currentId}/items/${item.orderItemId}`);
@@ -42,7 +45,11 @@ export const CartProvider = ({ children }) => {
 
                 const names = expiredItems.map(item => item.product?.productName).join(', ');
                 alert(`Reservation expired for: ${names}. They have been removed from your cart. Please add them again if you wish to order.`);
-                return refreshCart();
+                const updatedResponse = await axios.get(`${API_BASE_URL}/api/orders/${currentId}`);
+                const finalItems = updatedResponse.data.orderList || [];
+                setCartItems(finalItems);
+                setCartCount(finalItems.reduce((acc, item) => acc + (item.orderQty || 0), 0));
+                return;
             }
 
             setCartItems(items);
@@ -50,15 +57,10 @@ export const CartProvider = ({ children }) => {
             setCartCount(total);
         } catch (error) {
             console.error("Error connecting to Spring backend:", error);
-            setCartItems([]);
-            setCartCount(0);
         }
     }, [API_BASE_URL]);
 
     const addToCart = async(productId) => {
-        //precheck cart
-        await refreshCart();
-
         const currentId = localStorage.getItem('currentOrderId');
         
         try{
@@ -69,7 +71,7 @@ export const CartProvider = ({ children }) => {
             });
 
             const newId = response.data.orderId;
-            if(newId && newId !== currentId)
+            if(newId && newId.toString() !== currentId)
             {
                 //if it's different from current, update local storage and state
                 setOrderId(newId);
