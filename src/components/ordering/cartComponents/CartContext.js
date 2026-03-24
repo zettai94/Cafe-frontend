@@ -22,12 +22,30 @@ export const CartProvider = ({ children }) => {
             const response = await axios.get(`${API_BASE_URL}/api/orders/${currentId}`);
             
             //debug:
-            console.log("Cart data from backend:", response.data);
+            //console.log("Cart data from backend:", response.data);
 
             // get quantity from orderItem of currentOrder
             const items = response.data.orderList || [];
-            setCartItems(items);
+            const now = new Date();
+            const expiredItems = items.filter(item => {
+                const expiryString = item.product?.inventory?.holdExpiresAt;
+                if (!expiryString) return false; // If no expiry, consider it valid
+                return new Date(expiryString) < now;
+            });
 
+            if(expiredItems.length > 0) {
+                //remove only expired tracked item from cart
+                for(const item of expiredItems)
+                {
+                    await axios.delete(`${API_BASE_URL}/api/orders/${currentId}/items/${item.orderItemId}`);
+                }
+
+                const names = expiredItems.map(item => item.product?.productName).join(', ');
+                alert(`Reservation expired for: ${names}. They have been removed from your cart. Please add them again if you wish to order.`);
+                return refreshCart();
+            }
+
+            setCartItems(items);
             const total = items.reduce((acc, item) => acc + (item.orderQty || 0), 0);
             setCartCount(total);
         } catch (error) {
@@ -38,6 +56,9 @@ export const CartProvider = ({ children }) => {
     }, [API_BASE_URL]);
 
     const addToCart = async(productId) => {
+        //precheck cart
+        await refreshCart();
+
         const currentId = localStorage.getItem('currentOrderId');
         
         try{
@@ -57,28 +78,7 @@ export const CartProvider = ({ children }) => {
             await refreshCart();
         } catch (e)
         {
-            console.log("Couldn't add item: " + e);
-
-            //if reponse status is not 
-            if(e.response && (e.response.status === 400 || e.response.status === 403))
-            {
-                const userConfirmed = window.confirm(
-                    "Your previous session has expired. Do you want to start a new order?"
-                )
-                if(userConfirmed)
-                {
-                    localStorage.removeItem('currentOrderId');
-                    setOrderId(null);
-                    console.log("Starting new order...");
-                    await addToCart(productId);
-                }
-                else{
-                    localStorage.removeItem('currentOrderId');
-                    setOrderId(null);
-                    setCartCount(0);
-                    setCartItems([]);
-                }
-            }
+            console.error("Couldn't add item: " + e.response?.data?.message || e.message);
         }
     };
 
@@ -90,22 +90,10 @@ export const CartProvider = ({ children }) => {
             const response= await axios.delete(`${API_BASE_URL}/api/orders/${currentId}/items/${orderItemId}`);
         
             //if order was empty, java delete the order items list
-            if(typeof response.data === 'string')
-            {
-                localStorage.removeItem('currentOrderId');
-                setOrderId(null);
-                setCartCount(0);
-                setCartItems([]);
-                return;
-            }
-            else
-            {
-                //if oder still exists, return the updated order items list
-                const updatedItems = response.data.orderList || [];
-                setCartItems(updatedItems);
-                const total = updatedItems.reduce((acc, item) => acc + (item.orderQty || 0), 0);
-                setCartCount(total);
-            }
+            const updatedItems = response.data.orderList || [];
+            setCartItems(updatedItems);
+            const total = updatedItems.reduce((acc, item) => acc + (item.orderQty || 0), 0);
+            setCartCount(total);
         } catch (e) {
             console.error("Couldn't remove item: " + e.message);
         }
@@ -116,6 +104,15 @@ export const CartProvider = ({ children }) => {
         if(existingId) {
            refreshCart();
         }
+
+        //background cleanup for expired holds every 30 seconds
+        const cleanupInterval = setInterval(() => {
+            const id = localStorage.getItem('currentOrderId');
+            if(id){
+                refreshCart();
+            }
+        }, 30000);
+        return () => clearInterval(cleanupInterval);
     }, [refreshCart]);
 
     return (
