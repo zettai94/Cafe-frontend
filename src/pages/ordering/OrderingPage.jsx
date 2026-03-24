@@ -17,11 +17,12 @@ const OrderingPage =() =>{
                 <OrderSidebar 
                     isCollapsed={isCollapsed}
                     setIsCollapsed={setIsCollapsed}
+                    activeCategory={category}
                     setCategory={setCategory}
                     onCartClick={() => setIsCartOpen(true)}
                 />
                 <CartPanel isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-                <ProductGrid />
+                <ProductGrid activeCategory={category}/>
             </div>
         </CartProvider>
     );
