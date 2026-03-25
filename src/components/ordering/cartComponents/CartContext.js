@@ -131,10 +131,11 @@ export const CartProvider = ({ children }) => {
             refreshCart();
         }
 
-        //background cleanup for expired holds every 1 minute
+        //background cleanup check for expired IF website is actively being viewed 
+        // every 1 minute
         const cleanupInterval = setInterval(() => {
             const id = localStorage.getItem('currentOrderId');
-            if(id){
+            if(document.visibilityState === 'visible' && id){
                 console.log("Running background sync for OrderId " + id);
                 checkOrderStatus();
                 refreshCart();
