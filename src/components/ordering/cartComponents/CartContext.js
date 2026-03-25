@@ -70,14 +70,15 @@ export const CartProvider = ({ children }) => {
                 quantity: 1
             });
 
-            const newId = response.data.orderId;
-            if(newId && newId.toString() !== currentId)
+            const updatedOrder = response.data;
+            setCartItems(updatedOrder.orderList || []);
+            setCartCount((updatedOrder.orderList || []).reduce((acc, item) => acc + item.orderQty, 0));
+
+            if(updatedOrder.orderId.toString() !== currentId)
             {
-                //if it's different from current, update local storage and state
-                setOrderId(newId);
-                localStorage.setItem('currentOrderId', newId);
+                setOrderId(updatedOrder.orderId);
+                localStorage.setItem('currentOrderId', updatedOrder.orderId);
             }
-            await refreshCart();
         } catch (e)
         {
             console.error("Couldn't add item: " + e.response?.data?.message || e.message);
@@ -100,22 +101,47 @@ export const CartProvider = ({ children }) => {
             console.error("Couldn't remove item: " + e.message);
         }
     };
+
+    const checkOrderStatus = useCallback(async() => {
+        const currentId = localStorage.getItem('currentOrderId');
+        if(!currentId) return;
+        try{
+            const response = await axios.get(`${API_BASE_URL}/api/orders/${currentId}`);
+            const currentStatus = response.data.status;
+            if(currentStatus !== 'PENDING')
+            {
+                console.log("Order is no longer pending. Refreshing...");
+                setCartItems([]);
+                setCartCount(0);
+                setOrderId(null);
+                localStorage.removeItem('currentOrderId');
+                alert("Your previous order has expired or been processed. Your cart has been cleared.");
+            } 
+        }catch(e)
+        {
+            console.error("Error checking order status: " + e.message);
+        }
+    }, [API_BASE_URL]);
     
     useEffect(() => {
+        //check if status is "pending", otherwise start new order
         const existingId = localStorage.getItem('currentOrderId');
         if(existingId) {
-           refreshCart();
+            checkOrderStatus();
+            refreshCart();
         }
 
-        //background cleanup for expired holds every 30 seconds
+        //background cleanup for expired holds every 1 minute
         const cleanupInterval = setInterval(() => {
             const id = localStorage.getItem('currentOrderId');
             if(id){
+                console.log("Running background sync for OrderId " + id);
+                checkOrderStatus();
                 refreshCart();
             }
-        }, 30000);
+        }, 60000);
         return () => clearInterval(cleanupInterval);
-    }, [refreshCart]);
+    }, [checkOrderStatus, refreshCart]);
 
     return (
         <CartContext.Provider value={{ cartCount, cartItems, orderId, refreshCart, addToCart, removeFromCart }}>
