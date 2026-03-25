@@ -26,7 +26,7 @@ export const CartProvider = ({ children }) => {
 
             // get quantity from orderItem of currentOrder
             let items = response.data.orderList || [];
-            const now = new Date();
+    
             const expiredItems = items.filter(item => {
                 const expiryString = item.product?.inventory?.holdExpiresAt;
                 if(!expiryString) return false; // if no expiry, consider it not expired

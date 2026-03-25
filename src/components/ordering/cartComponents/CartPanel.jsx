@@ -2,7 +2,7 @@ import { useCart } from './CartContext';
 import { IoClose } from 'react-icons/io5';
 
 const CartPanel = ({ isOpen, onClose }) => {
-    const { cartCount, cartItems = [], updateQuantity, removeFromCart } = useCart();
+    const { cartCount, cartItems = [], removeFromCart } = useCart();
     const isCartEmpty = cartCount === 0;
 
     if (!isOpen) return null;
